@@ -2548,7 +2548,11 @@ rclcpp::NodeOptions ControllerManager::determine_controller_node_options(
     node_options_arguments.push_back("use_sim_time:=true");
   }
 
-  controller_node_options = controller_node_options.arguments(node_options_arguments);
+  controller_node_options = controller_node_options.arguments(
+    node_options_arguments
+  ).context(
+    this->get_node_options().context()
+  );
   return controller_node_options;
 }
 
